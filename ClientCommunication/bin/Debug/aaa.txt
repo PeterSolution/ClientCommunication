@@ -1,0 +1,13 @@
+System.Text.Json.JsonException: '<' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0. ---> System.Text.Json.JsonReaderException: '<' is an invalid start of a value. LineNumber: 0 | BytePositionInLine: 0.
+   w System.Text.Json.Utf8JsonReader.ConsumeValue(Byte marker)
+   w System.Text.Json.Utf8JsonReader.ReadFirstToken(Byte first)
+   w System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   w System.Text.Json.Utf8JsonReader.Read()
+   w System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   --- Koniec śladu stosu wyjątków wewnętrznych ---
+   w System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   w System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, JsonSerializerOptions options, ReadStack& state)
+   w System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   w System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   w System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   w ClientCommunication.MainWindow.<ConnectToApi>d__4.MoveNext() w E:\pobrane\ClientCommunication\ClientCommunication\MainWindow.xaml.cs:wiersz 49

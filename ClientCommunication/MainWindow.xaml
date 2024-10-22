@@ -1,0 +1,59 @@
+﻿<Window x:Class="ClientCommunication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientCommunication"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid x:Name="chatbox" ScrollViewer.HorizontalScrollBarVisibility="Auto" SizeChanged="chatbox_SizeChanged" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="ListClient" Width="200" Margin="0,0,0,64" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDoubleClick="ListClient_MouseDoubleClick" HorizontalAlignment="Right"/>
+
+        <TextBox x:Name="LoginBox" HorizontalAlignment="Center" Margin="0,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="HasloBox" HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="l1Nazwa" Content="Nazwa" HorizontalAlignment="Left" Margin="261,79,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="L2Haslo" Content="Haslo" HorizontalAlignment="Left" Margin="264,129,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Logowanie" Content="Zaloguj" HorizontalAlignment="Center" Margin="0,197,0,0" VerticalAlignment="Top" Click="Logowanie_Click"/>
+        <Label x:Name="zalogowano" Content="" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <GroupBox x:Name="chatbox1" Header="Chat" Margin="140,0,200,75" Visibility="Hidden">
+            <Canvas x:Name="ChatCanvas">
+            </Canvas>
+
+        </GroupBox>
+        <Grid x:Name="SendGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="sendtextbox" 
+             TextWrapping="Wrap" 
+             VerticalAlignment="Bottom" 
+             Height="70" 
+             Visibility="Hidden"
+             Margin="140,364,0,0" 
+             HorizontalAlignment="Stretch" />
+
+            <Button x:Name="Wyslijbtn" 
+            Content="Wyslij" 
+            Visibility="Hidden" 
+            Click="Choose_Click" 
+            Height="58" 
+            Width="113" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Bottom" 
+            Margin="0,0,0,0"  />
+            <Image x:Name="MenuOpen" Visibility="Hidden" HorizontalAlignment="Left" Height="38" Margin="0,36,0,0" VerticalAlignment="Top" Width="56" Source="/Resources/menuicon.png" Stretch="Fill" MouseDown="MenuOpen_MouseDown"/>
+            <Label x:Name="logoutlabel" Content="Wyloguj sie" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Visibility="Hidden" MouseDown="Label_MouseDown"/>
+            <Label x:Name="closechatlabel" Content="Zamknij chat" HorizontalAlignment="Left" Margin="0,104,0,0" VerticalAlignment="Top" Visibility="Hidden" MouseDown="Label_MouseDown_1"/>
+            <Label x:Name="Newchat" Content="Stworz nowy chat" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" Visibility="Visible" MouseDown="Newchat_MouseDown"/>
+            <Label x:Name="userslabel" Content="Wybierz uzytkownika z jakim chcesz rozpaczac chat" Visibility="Hidden" HorizontalAlignment="Left" Margin="519,0,0,0" VerticalAlignment="Top"/>
+        </Grid>
+    </Grid>
+</Window>
