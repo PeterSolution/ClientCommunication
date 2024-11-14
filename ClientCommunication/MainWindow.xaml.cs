@@ -20,6 +20,7 @@ using System.Net;
 using ClientCommunication.Models;
 using System.Security.Policy;
 using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Threading;
 
 namespace ClientCommunication
 {
@@ -28,12 +29,16 @@ namespace ClientCommunication
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer timmer;
         readonly HttpClient clientconnect;
         HttpResponseMessage response;
         UserDbModel loggeduser;
         List<DataDbModel> userchats = new List<DataDbModel>();
         List<string> wiadomoscilista = new List<string>();
         List<TextBox> wiadomoscibox = new List<TextBox>();
+
+        List<int> notificationid = new List<int>();
+
         int openchatid = 0;
 
         string ip = "localhost"; //192.168.123.42
@@ -50,10 +55,14 @@ namespace ClientCommunication
         {
             InitializeComponent();
 
+            timmer = new DispatcherTimer();
+            timmer.Interval = TimeSpan.FromSeconds(10);
+            timmer.Tick += checknotification;
+
             if (testmode)
             {
                 LoginBox.Text = "string";
-                HasloBox.Text = "string";
+                HasloBox.Password = "string";
             }
 
             ListClient.Visibility = Visibility.Hidden;
@@ -66,8 +75,11 @@ namespace ClientCommunication
             handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }; // Uwaga: używaj tylko w środowisku deweloperskim
             clientconnect = new HttpClient(handler);
 
+        }
 
-
+        async void checknotification(object sender, EventArgs e)
+        {
+            await setchats();
         }
 
         private async void Choose_Click(object sender, RoutedEventArgs e)
@@ -172,7 +184,7 @@ namespace ClientCommunication
                             Canvas.SetLeft(textBox, 10);
                             Canvas.SetTop(textBox, ile);
                             ChatCanvas.Children.Add(textBox);
-                            ile = ile + textBox.ActualHeight + 20;
+                            ile = ile + textBox.ActualHeight * 2 + 60;
                         }
                         else
                         {
@@ -206,6 +218,7 @@ namespace ClientCommunication
             foreach(var currentitem in userchats)
             {
                 ListClient.Items.Add(currentitem.title);
+
             }
         }
 
@@ -225,7 +238,6 @@ namespace ClientCommunication
                 userchats = JsonSerializer.Deserialize<List<DataDbModel>>(jsonResponse);*/
 
                 ListClient.Margin = new Thickness(0, 0, 0, 64);
-                ListClient.Items.Clear();
                 var response2 = await clientconnect.GetAsync($"https://{ip}:{port}/api/ChatForWhoes/{loggeduser.idduser}");
                 response2.EnsureSuccessStatusCode();
 
@@ -234,11 +246,18 @@ namespace ClientCommunication
 
                 /*var jsonResponse2 = await response2.Content.ReadAsStringAsync();
                 var userchats2 = JsonSerializer.Deserialize<List<ChatForWho>>(jsonResponse);*/
-                userchats.Clear();
                 // Dodawanie danych do ListBox
                 if (chatsforuser != null)
                 {
                     int idofchat;
+
+                    var responeaboutnotification = await clientconnect.GetAsync($"https://{ip}:{port}/api/notifications/id3?iduser={loggeduser.idduser}");
+                    responeaboutnotification.EnsureSuccessStatusCode();
+                    var responsenotification= await responeaboutnotification.Content.ReadAsStringAsync();
+                    var notificatonforuser = JsonSerializer.Deserialize<List<NotificationDbModel>>(responsenotification);
+                    int flag = 0;
+                    ListClient.Items.Clear();
+                    userchats.Clear();
                     foreach (var item in chatsforuser)
                     {
                         idofchat = item.idchat;
@@ -246,9 +265,32 @@ namespace ClientCommunication
                         response.EnsureSuccessStatusCode();
                         string jsonResponse2 = await response.Content.ReadAsStringAsync();
                         var userData = JsonSerializer.Deserialize<DataDbModel>(jsonResponse2);
-                        userchats.Add(userData);
-                        ListClient.Items.Add(userData.title);
 
+
+                        var respone2checifnew = await clientconnect.GetAsync($"https://{ip}:{port}/api/notifications");
+
+
+
+
+                        userchats.Add(userData);
+
+                        for (int i = 0; i < notificatonforuser.Count; i++)
+                        {
+                            if (item.idchat == notificatonforuser[i].idchat)
+                            {
+                                flag = 1;
+                            }
+                        }
+                        if (flag == 1)
+                        {
+                            ListClient.Items.Add(userData.title + " !!!");
+                            notificationid.Add(userData.iddata);
+                        }
+                        else
+                        {
+                            ListClient.Items.Add(userData.title);
+                        }
+                        flag = 0;
                         //ListClient.Items.Add(item.title);
                     }
                     //ListClient.ItemsSource = dataList; 
@@ -267,13 +309,6 @@ namespace ClientCommunication
             }
 
         }
-        public async void startUserConv()
-        {
-
-
-
-        }
-
         private async void ListClient_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (flagForChat == 2)
@@ -372,7 +407,7 @@ namespace ClientCommunication
         {
             try
             {
-                var response = await clientconnect.GetAsync($"https://{ip}:{port}/api/users/name?login={LoginBox.Text}&password={HasloBox.Text}");
+                var response = await clientconnect.GetAsync($"https://{ip}:{port}/api/users/name?login={LoginBox.Text}&password={HasloBox.Password}");
 
                 flagForChat = 1;
 
@@ -388,8 +423,8 @@ namespace ClientCommunication
                         hideloginpanel();
                         showmainpanel();
                         zalogowano.Content = "Uzytkownik: " + loggeduser.name;
-
-                        setchats();
+                        timmer.Start();
+                        await setchats();
                     }
                 }
                 catch (Exception ex)
@@ -423,6 +458,7 @@ namespace ClientCommunication
             HasloBox.Visibility = Visibility.Hidden;
             L2Haslo.Visibility = Visibility.Hidden;
             l1Nazwa.Visibility = Visibility.Hidden;
+            backWelcome.Visibility = Visibility.Hidden;
 
         }
         async void showmainpanel()
@@ -485,11 +521,13 @@ namespace ClientCommunication
             {
                 logoutlabel.Visibility = Visibility.Hidden;
                 closechatlabel.Visibility = Visibility.Hidden;
+                Newchat.Visibility = Visibility.Hidden;
             }
             else
             {
                 logoutlabel.Visibility = Visibility.Visible;
                 closechatlabel.Visibility = Visibility.Visible;
+                Newchat.Visibility = Visibility.Visible;
             }
         }
 
@@ -522,7 +560,7 @@ namespace ClientCommunication
 
             ListClient.Margin = new Thickness(0, 60, 0, 64);
             ListClient.Items.Clear();
-            userslabel.Margin = new Thickness(this.ActualWidth - userslabel.Width, 0, 0, 0);
+            userslabel.Margin = new Thickness(0, 10, 0, 64);
             userslabel.Visibility = Visibility.Visible;
             //https://localhost:7116/api/users/all
             response = await clientconnect.GetAsync($"https://{ip}:{port}/api/users/all");

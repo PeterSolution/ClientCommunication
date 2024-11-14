@@ -13,13 +13,46 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="ListClient" Width="200" Margin="0,0,0,64" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDoubleClick="ListClient_MouseDoubleClick" HorizontalAlignment="Right"/>
+        <ListBox Visibility="Hidden" x:Name="ListClient" Width="200" Margin="0,0,0,64" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDoubleClick="ListClient_MouseDoubleClick" HorizontalAlignment="Right"/>
 
-        <TextBox x:Name="LoginBox" HorizontalAlignment="Center" Margin="0,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="HasloBox" HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="l1Nazwa" Content="Nazwa" HorizontalAlignment="Left" Margin="261,79,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="L2Haslo" Content="Haslo" HorizontalAlignment="Left" Margin="264,129,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Logowanie" Content="Zaloguj" HorizontalAlignment="Center" Margin="0,197,0,0" VerticalAlignment="Top" Click="Logowanie_Click"/>
+        <StackPanel x:Name="LoginPanel" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Width="300">
+            <Border Background="White"
+                    CornerRadius="8"
+                    Padding="20"
+                    Effect="{DynamicResource MaterialDropShadow}">
+                <StackPanel>
+                    <TextBlock x:Name="backWelcome" Text="Witaj znowu" 
+                             FontSize="24" 
+                             FontWeight="SemiBold" 
+                             HorizontalAlignment="Center"
+                             Margin="0,0,0,20"/>
+
+                    <Label x:Name="l1Nazwa" Content="Nazwa uzytkownika" Margin="0,0,0,5"/>
+                    <TextBox x:Name="LoginBox" 
+                            Height="40"
+                            Padding="10,0"
+                            VerticalContentAlignment="Center"
+                            Margin="0,0,0,15"/>
+
+                    <Label x:Name="L2Haslo" Content="Haslo" Margin="0,0,0,5"/>
+                    <PasswordBox x:Name="HasloBox"
+                               Height="40"
+                               Padding="10,0"
+                               VerticalContentAlignment="Center"
+                               Margin="0,0,0,20"/>
+
+                    <Button x:Name="Logowanie" 
+                            Content="Sign In"
+                            Height="40"
+                            Background="#1877F2"
+                            Foreground="White"
+                            Click="Logowanie_Click"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
         <Label x:Name="zalogowano" Content="" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <GroupBox x:Name="chatbox1" Header="Chat" Margin="140,0,200,75" Visibility="Hidden">
             <Canvas x:Name="ChatCanvas">
@@ -52,7 +85,7 @@
             <Image x:Name="MenuOpen" Visibility="Hidden" HorizontalAlignment="Left" Height="38" Margin="0,36,0,0" VerticalAlignment="Top" Width="56" Source="/Resources/menuicon.png" Stretch="Fill" MouseDown="MenuOpen_MouseDown"/>
             <Label x:Name="logoutlabel" Content="Wyloguj sie" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Visibility="Hidden" MouseDown="Label_MouseDown"/>
             <Label x:Name="closechatlabel" Content="Zamknij chat" HorizontalAlignment="Left" Margin="0,104,0,0" VerticalAlignment="Top" Visibility="Hidden" MouseDown="Label_MouseDown_1"/>
-            <Label x:Name="Newchat" Content="Stworz nowy chat" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" Visibility="Visible" MouseDown="Newchat_MouseDown"/>
+            <Label x:Name="Newchat" Content="Stworz nowy chat" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" Visibility="Hidden" MouseDown="Newchat_MouseDown"/>
             <Label x:Name="userslabel" Content="Wybierz uzytkownika z jakim chcesz rozpaczac chat" Visibility="Hidden" HorizontalAlignment="Left" Margin="519,0,0,0" VerticalAlignment="Top"/>
         </Grid>
     </Grid>

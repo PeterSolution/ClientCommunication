@@ -102,6 +102,7 @@
     <Compile Include="Models\DataDbModel.cs" />
     <Compile Include="Models\DataUserDbModel.cs" />
     <Compile Include="Models\HideDbModel.cs" />
+    <Compile Include="Models\UserNotificationDbModel.cs" />
     <Compile Include="Models\NotificationDbModel.cs" />
     <Compile Include="Models\UserChatForWho.cs" />
     <Compile Include="Models\UserDbModel.cs" />
