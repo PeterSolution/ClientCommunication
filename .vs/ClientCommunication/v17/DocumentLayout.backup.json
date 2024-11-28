@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|solutionrelative:clientcommunication\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\clientcommunication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|solutionrelative:clientcommunication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\clientcommunication\\models\\notificationdbmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|solutionrelative:clientcommunication\\models\\notificationdbmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\clientcommunication\\models\\usernotificationdbmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|solutionrelative:clientcommunication\\models\\usernotificationdbmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\clientcommunication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|solutionrelative:clientcommunication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F085A356-A9EE-4F53-AF98-C79324F70239}|ClientCommunication\\ClientCommunication.csproj|E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\clientcommunication\\models\\datadbmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 256,
+      "VerticalTabListWidth": 134,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
@@ -88,14 +88,14 @@
               "RelativeDocumentMoniker": "ClientCommunication\\MainWindow.xaml.cs",
               "ToolTip": "E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\ClientCommunication\\MainWindow.xaml.cs",
               "RelativeToolTip": "ClientCommunication\\MainWindow.xaml.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAIwDUBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOcBAAAAAAAAAAA0wAMCAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-19T20:33:28.388Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UserNotificationDbModel.cs",
               "DocumentMoniker": "E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\ClientCommunication\\Models\\UserNotificationDbModel.cs",
               "RelativeDocumentMoniker": "ClientCommunication\\Models\\UserNotificationDbModel.cs",
@@ -107,18 +107,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\ClientCommunication\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ClientCommunication\\MainWindow.xaml",
               "ToolTip": "E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\ClientCommunication\\MainWindow.xaml",
               "RelativeToolTip": "ClientCommunication\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-20T10:56:58.188Z"
+              "WhenOpened": "2024-10-20T10:56:58.188Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "NotificationDbModel.cs",
               "DocumentMoniker": "E:\\pobrane\\kkk\\ClientCommunicationnew123\\ClientCommunication\\ClientCommunication\\Models\\NotificationDbModel.cs",
               "RelativeDocumentMoniker": "ClientCommunication\\Models\\NotificationDbModel.cs",

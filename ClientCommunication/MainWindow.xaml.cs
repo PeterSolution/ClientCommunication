@@ -65,6 +65,7 @@ namespace ClientCommunication
                 HasloBox.Password = "string";
             }
 
+
             ListClient.Visibility = Visibility.Hidden;
             
             zalogowano.Visibility = Visibility.Hidden;
@@ -173,7 +174,8 @@ namespace ClientCommunication
                             {
                                 MaxWidth = 300,
                                 Width = 200,
-                                FontSize=24,
+                                Name = "message" + ile.ToString(),
+                                FontSize =24,
                                 TextWrapping = TextWrapping.Wrap,
                                 IsReadOnly = true,
                                 Text = item.message
@@ -191,6 +193,7 @@ namespace ClientCommunication
                             TextBox textBox = new TextBox
                             {
                                 MaxWidth = 300,
+                                Name="message"+ile.ToString(),
                                 Width = 200,
                                 FontSize = 24,
                                 TextWrapping = TextWrapping.Wrap,
@@ -219,6 +222,39 @@ namespace ClientCommunication
             {
                 ListClient.Items.Add(currentitem.title);
 
+            }
+        }
+
+        void przesuniecie()
+        {
+            var messageboxes = ChatCanvas.Children.OfType<TextBox>().Where(name => name.Name.StartsWith("message"))
+                .OrderBy(id => int.Parse(id.Name.Replace("message", "")));
+            int przesuniecie = 60;
+            foreach (var item in messageboxes)
+            {
+                TranslateTransform transform=item.RenderTransform as TranslateTransform;
+                if (transform == null)
+                {
+                    transform=new TranslateTransform();
+                    item.RenderTransform = transform;
+                }
+                transform.Y=transform.Y-przesuniecie;
+            }
+        }
+        void przesunieciedol()
+        {
+            var messageboxes = ChatCanvas.Children.OfType<TextBox>().Where(name => name.Name.StartsWith("message"))
+                .OrderBy(id => int.Parse(id.Name.Replace("message", "")));
+            int przesuniecie = 60;
+            foreach (var item in messageboxes)
+            {
+                TranslateTransform transform = item.RenderTransform as TranslateTransform;
+                if (transform == null)
+                {
+                    transform = new TranslateTransform();
+                    item.RenderTransform = transform;
+                }
+                transform.Y = transform.Y + przesuniecie;
             }
         }
 
@@ -474,6 +510,8 @@ namespace ClientCommunication
         {
             sendtextbox.Margin= new Thickness(140, this.ActualHeight-(sendtextbox.ActualHeight*2), 0, 0);
             MenuOpen.Margin = new Thickness(0, 36, 0, 0);
+            btngora.Content=(ListClient.Margin.Right).ToString();
+            btngora.Margin = new Thickness(this.Width*2,this.Height/8,0,0 );
 
         }
         async Task logout()
@@ -577,5 +615,9 @@ namespace ClientCommunication
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            przesuniecie();
+        }
     }
 }

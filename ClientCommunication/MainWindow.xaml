@@ -13,8 +13,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListBox Visibility="Hidden" x:Name="ListClient" Width="200" Margin="0,0,0,64" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDoubleClick="ListClient_MouseDoubleClick" HorizontalAlignment="Right"/>
-
+        <ListBox Visibility="Visible" x:Name="ListClient" Width="200" Margin="0,0,0,64" ScrollViewer.HorizontalScrollBarVisibility="Auto" MouseDoubleClick="ListClient_MouseDoubleClick" HorizontalAlignment="Right"/>
+        <Button x:Name="btngora" Content="Button" HorizontalAlignment="Left" Margin="580,197,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <StackPanel x:Name="LoginPanel" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
@@ -87,6 +87,7 @@
             <Label x:Name="closechatlabel" Content="Zamknij chat" HorizontalAlignment="Left" Margin="0,104,0,0" VerticalAlignment="Top" Visibility="Hidden" MouseDown="Label_MouseDown_1"/>
             <Label x:Name="Newchat" Content="Stworz nowy chat" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" Visibility="Hidden" MouseDown="Newchat_MouseDown"/>
             <Label x:Name="userslabel" Content="Wybierz uzytkownika z jakim chcesz rozpaczac chat" Visibility="Hidden" HorizontalAlignment="Left" Margin="519,0,0,0" VerticalAlignment="Top"/>
+            
         </Grid>
     </Grid>
 </Window>
